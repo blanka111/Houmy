@@ -13,8 +13,9 @@ class GeneralLib {
     // FirstPage.btnLogin().click().wait(5000);
     LoginPage.inputLogin().type(username);
     LoginPage.inputPassword().type(password);
-    LoginPage.btnLogin().click().wait(5000);
     cy.wait(1000);
+    LoginPage.btnLogin().click().wait(5000);
+    cy.wait(500);
 
     }
     createStep(step) {
