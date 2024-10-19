@@ -1,26 +1,29 @@
 import GeneralLib from '../houmy_libary/general_libary';
 import HomeLib from '../houmy_libary/home_libary';
+import LoginPage from '../houmy_pages/login_pages';
+
+import {createStep,createSession,createIntercept,urlLoad} from '../../support/helper';
+const user = Cypress.env('user');
 
 describe('Houmy', () => {
     beforeEach(() => {
-        // GeneralLib.createSession('Prihlaseni danym  mailem',()=>
+        createSession('Prihlaseni',()=> LoginPage.login(user.email, user.pwd)
+     );
+        urlLoad('https://client.houmy.app/dashboard');
 
-        GeneralLib.login('blanka.demangeon@gmail.com', 'Ferari.2025')
-    // )
-        ;
     });
 
     it('1.Vytvor kontakt', () => {
     HomeLib.addContact('Sysel','Pavel','pavel.sysel@email.cz');
 });
 
-    it.only('2.Vytvor portfolio', () => {
+    it('2.Vytvor portfolio', () => {
         HomeLib.addPortfolio('Beskydy');
 
     });
 
-    it('3.Vytvor nemovitost v portfoliu', () => {
-
+    it.only('3.Vytvor nemovitost v portfoliu', () => {
+HomeLib.addItemToPortfolio('Beskydy','Chata Morava');
     });
 
 });
