@@ -1,23 +1,23 @@
 import Adresar from '../houmy_pages/adresar';
 import Home from '../houmy_pages/home';
-import GeneralLib from '../houmy_libary/general_libary';
 import Portfolio from '../houmy_pages/portfolio';
-import {createStep,createSession,createIntercept,urlLoad} from '../../support/helper';
+import Nemovitost from '../houmy_pages/nemovitost';
+import {createStep,createSession,createIntercept,urlLoad,generateRandomSurname,generateEmail,generateRandomFirstName,generateRandomAddress,generateRandomNr} from '../../support/helper';
 
 class HomeLib {
 
-    addContact(lastName, name, mail) {
+    addContact() {
         Home.btnAdresar().click().wait(1000);
         createStep('klik na pridat novy kontakt');
-        Adresar.btncreateNewContact().click().wait(1000);
+        Adresar.btncreateNewContact().click({timeout:1000});
         createStep('vlozeni prijmeni');
-        Adresar.inputLastName().type(lastName).wait(1000);
+        Adresar.inputLastName().type(generateRandomSurname({timeout:1000}));
         createStep('vlozeni jmena');
-        Adresar.inputFirstName().type(name).wait(1000);
+        Adresar.inputFirstName().type(generateRandomFirstName({timeout:1000}));
         createStep('vlozeni emailu');
-        Adresar.inputEmail().type(mail).wait(1000);
+        Adresar.inputEmail().type(generateEmail(8));
         createStep('ulozeni kontaktu');
-        Adresar.btnSaveContact().click().wait(1000);
+        Adresar.btnSaveContact().click({timeout:1000});
     }
     addPortfolio(namePortfolio) {
         Home.btnPortfolio().click().wait(1000);
@@ -35,6 +35,18 @@ class HomeLib {
         Home.btnChoosePortfolio(namePortfolio).click().wait(1000);
         createStep('klik na pridani prvni nemovitosti');
         Home.btnAddFirstItemToPortfolio().click().wait(1000);
+        createStep('Vlozeni adresy nemovitosti + enter');
+        Nemovitost.inputNemovitost().type(generateRandomAddress({timeout:1000})).wait(1000).type("{enter}").type("{enter}");
+        Nemovitost.btnNemovitostPokracovat().click({timeout:1000});
+        createStep('Vyber Dum + pokracovat');
+        Nemovitost.checkDUM().check().wait(1000);
+        Nemovitost.btnNemovitostPokracovat().click({timeout:1000});
+        createStep('Dalsi dispozice');
+        // Nemovitost.sliderInfo().click({timeout:1000});
+        Nemovitost.inputUzitnaPlocha().type(generateRandomNr(2));
+        Nemovitost.inputDispozice().type('2').wait(1000).type("{enter}");
+        createStep('Ulozeni nemovitosti');
+        Nemovitost.btnUlozitNemovitost().click({timeout:1000});
 
 
     }

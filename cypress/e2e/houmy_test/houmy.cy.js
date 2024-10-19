@@ -1,4 +1,4 @@
-import GeneralLib from '../houmy_libary/general_libary';
+
 import HomeLib from '../houmy_libary/home_libary';
 import LoginPage from '../houmy_pages/login_pages';
 
@@ -14,7 +14,7 @@ describe('Houmy', () => {
     });
 
     it('1.Vytvor kontakt', () => {
-    HomeLib.addContact('Sysel','Pavel','pavel.sysel@email.cz');
+    HomeLib.addContact();
 });
 
     it('2.Vytvor portfolio', () => {
@@ -23,7 +23,8 @@ describe('Houmy', () => {
     });
 
     it.only('3.Vytvor nemovitost v portfoliu', () => {
-HomeLib.addItemToPortfolio('Beskydy','Chata Morava');
+    HomeLib.addItemToPortfolio('Beskydy','Chata Morava');
+
     });
 
 });
