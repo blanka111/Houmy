@@ -5,7 +5,8 @@ class Home {
     btnArrowPortfolio = () => cy.get('.ml-auto.-rotate-90');
     tableRowPortfolio = (text) => cy.contains('.overflow-hidden',text);
     btnChoosePortfolio = (text) => this.tableRowPortfolio(text).contains('.truncate',text);
-
-    btnAddFirstItemToPortfolio = () => cy.contains('.relative.flex','Přidat první nemovitost');
+    tableKonciciSmlouvy= () => cy.contains('.flex','Končící smlouvy');
+    btnAddFirstItemToPortfolio = () => cy.contains('.flex.w-full','Přidat nemovitost');
+    btnCreatedPortfolio = (name) => cy.contains('li',name);
 }
 module.exports = new Home;
